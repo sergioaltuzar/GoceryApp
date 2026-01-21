@@ -81,7 +81,7 @@ struct HTTPClient {
         
         let configuration = URLSessionConfiguration.default
         
-        //configuration.httpAdditionalHeaders =
+        configuration.httpAdditionalHeaders = ["Content-Type": "application/json"]
         let sesion = URLSession(configuration: configuration)
         
         let (data, response) = try await sesion.data(for: request)
