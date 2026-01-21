@@ -16,6 +16,11 @@ struct RegistrationScreen: View {
         !username.isEmptyOrWhitespace && !password.isEmptyOrWhitespace && (password.count >= 6 && password.count <= 10)
     }
     
+    private func register() async {
+        
+        
+    }
+    
     var body: some View {
         Form{
             TextField("Username", text: $username)
@@ -23,7 +28,9 @@ struct RegistrationScreen: View {
             
             HStack {
                 Button("Register"){
-                    
+                    Task {
+                        await register()
+                    }
                 }.buttonStyle(.borderless)
                     .disabled(!isFormValid)
             }

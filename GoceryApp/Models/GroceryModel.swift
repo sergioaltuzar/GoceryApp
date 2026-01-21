@@ -1,0 +1,24 @@
+//
+//  GroceryModel.swift
+//  GoceryApp
+//
+//  Created by Sergio Altuzar on 21/01/26.
+//
+
+import Foundation
+import Combine
+
+class GroceryModel: ObservableObject {
+    
+    let httpClient = HTTPClient()
+    
+    func register(username: String, password: String) async throws -> Bool {
+        let registerData = ["username": username, "password": password]
+        let resource = try Resource(url: Constants.Urls.register, method: .post(JSONEncoder().encode(registerData)), modelType: RegisterResponseDTO.self)
+        
+        let registerResponseDTO = try await httpClient.load(resource)
+        return !registerResponseDTO.error
+        
+    }
+}
+
